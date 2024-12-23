@@ -1,4 +1,4 @@
-"use client";
+"use client"; // indicate component shold be rendered on the client-side
 
 import "./globals.css";
 import { ToastContainer, toast } from "react-toastify";

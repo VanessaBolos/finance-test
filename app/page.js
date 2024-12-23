@@ -10,12 +10,8 @@ import AddIncomeModal from "@/components/modals/AddIncomeModal";
 import AddExpensesModal from "@/components/modals/AddExpensesModal";
 import SignIn from "@/components/SignIn";
 
-// Register ALL necessary Chart.js components
 ChartJS.register(
-  ArcElement,
-  Tooltip,
-  Legend,
-  DoughnutController
+  ArcElement, Tooltip, Legend, DoughnutController
 );
 
 export default function Home() {
