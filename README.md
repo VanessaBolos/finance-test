@@ -1,5 +1,5 @@
 # Personal-Finance-Tracker 💵💵💵
-### You can try the application from [here!](https://nodejs.org/en/download/prebuilt-installer/current)
+### You can try the application from [here!](https://finance-test-4q4tl3sdr-vanessabolos-projects.vercel.app/)
 ## Project Overview: 
 #### A simple, customizable expense and income tracking app! 
 
@@ -77,7 +77,6 @@
 - Took a while to decide on a layout, cut more of my time working on the project
 - Had to learn how to use chart.js and how to implement it in my project. Encountered a lot of issues with installing react-chartjs-2 and react-firebase-hooks/auth as it doesn't work with React19
 
-
 ### Week 2
 #### Build the UI for core features and connect to the backend
 - Set up Firebase Realtime Database
@@ -85,8 +84,6 @@
 - Replaced dummy data with actual user input
 ![Add expense modal Screenshot](/public/screenshots/addexpensemodal.JPG)
 ![Add income modal Screenshot](/public/screenshots/addincomemodal.JPG)
-#### Difficulites:
-
 
 ### Week 3
 #### Setting up Firebase Authentication and final implementations
@@ -107,13 +104,9 @@
 - Adding Firestore Security rules for protecting data ensuring only authorized users will be able to update,delete and create data
 ![Firestore security rules](/public/screenshots/firestore%20security%20rules.JPG)
 
-
 ####  Documentation
 - Writing clear and concise documentation for the project
 - Updating the README file with the latest information
 ####  Deployment
 - Deploying the project to Vercel
 - Configuring the server and database for production use
-
-#### Difficulites:
-
