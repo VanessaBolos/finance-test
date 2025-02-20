@@ -10,9 +10,7 @@ import AddIncomeModal from "@/components/modals/AddIncomeModal";
 import AddExpensesModal from "@/components/modals/AddExpensesModal";
 import SignIn from "@/components/SignIn";
 
-ChartJS.register(
-  ArcElement, Tooltip, Legend, DoughnutController
-);
+ChartJS.register(ArcElement, Tooltip, Legend, DoughnutController);
 
 export default function Home() {
   const [showAddIncomeModal, setShowAddIncomeModal] = useState(false);
@@ -21,11 +19,12 @@ export default function Home() {
   const [balance, setBalance] = useState(0);
 
   const { expenses, income } = useContext(financeContext);
-  const { user } = useContext(authContext);
+  const { user, loading } = useContext(authContext); // Include `loading` to handle auth state initialization
 
   const chartInstanceRef = useRef(null);
   const chartRef = useRef(null);
 
+  // Update balance and render the chart when income/expenses change
   useEffect(() => {
     const newBalance =
       income.reduce((total, i) => total + i.amount, 0) -
@@ -58,23 +57,23 @@ export default function Home() {
               position: "bottom",
               labels: {
                 font: {
-                  size: 12
-                }
-              }
+                  size: 12,
+                },
+              },
             },
             tooltip: {
               callbacks: {
-                label: function(context) {
+                label: function (context) {
                   const value = context.raw;
                   const total = context.dataset.data.reduce((a, b) => a + b, 0);
                   const percentage = ((value / total) * 100).toFixed(1);
                   return `${currencyFormatter(value)} (${percentage}%)`;
-                }
-              }
-            }
+                },
+              },
+            },
           },
-          cutout: "60%"
-        }
+          cutout: "60%",
+        },
       });
     }
 
@@ -84,15 +83,27 @@ export default function Home() {
       }
     };
   }, [expenses, income]);
+
+  // Handle loading state while checking user authentication
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
+  // Redirect to the SignIn component if the user is not logged in
   if (!user) {
     return <SignIn />;
   }
 
+  // Render the main dashboard if the user is authenticated
   return (
     <>
-    {/* Add Income Modal */}
+      {/* Add Income Modal */}
       <AddIncomeModal show={showAddIncomeModal} onClose={setShowAddIncomeModal} />
-     {/* Add Expenses Modal */}  
+      {/* Add Expenses Modal */}
       <AddExpensesModal show={showAddExpenseModal} onClose={setShowAddExpenseModal} />
 
       <main className="container max-w-2xl px-6 mx-auto">
@@ -116,7 +127,7 @@ export default function Home() {
           <div className="flex flex-col gap-4 mt-6">
             {expenses.map((expense) => {
               return <ExpenseCategoryItem key={expense.id} expense={expense} />;
-              })}
+            })}
           </div>
         </section>
 
